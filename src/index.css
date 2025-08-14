@@ -1,0 +1,44 @@
+.container{
+  width: 300px;
+  margin: 20px auto;
+  background: #222;
+  padding: 10px;
+  border-radius: 10px;
+  color: #fff;
+  font-family: sans-serif;
+
+}
+.visuel{
+   background: #df2323;
+  padding: 10px;
+  text-align: right;
+  border-radius: 8px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.clavier{
+
+   display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+  margin-top: 10px;
+
+}
+.clavier button{
+    padding: 15px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  background: #444;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.clavier button:hover{
+  background: #555;
+}
+.clavier button:active{
+  background: #666;
+}
