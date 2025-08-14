@@ -84,43 +84,64 @@ const [valeurprecedente, setValeurPrecedente] = useState(null);
   }, [affichage, operation, valeurprecedente]);
 
   const boutons = [
-    '7', '8', '9', '4', '5', '6', '1', '2', '3', '0', '.', '+', '-', 'x' ,'÷', '=', 'reset'
+    '7', '8', '9', '4', '5', '6', '1', '2', '3', '0', '.', '+', '-', 'x' ,'÷', '='
   ];
 
 
-    return (
-    <>
-      <div className='container'>
-        <div className='visuel' onClick={tailletext}>{affichage}</div>
-        <div className='clavier'>
-          {
-            boutons.map(bouton => (
-              <button 
-                key={bouton} 
-                onClick={() => {
-                  if ("0123456789.".includes(bouton)) {
-                    ajouterChiffre_point(bouton);
-                  } else if (["+", "-", "x", "÷"].includes(bouton)) {
-                    ajouterOperation(bouton === "x" ? "*" : bouton === "÷" ? "/" : bouton);
-                  } else if (bouton === "=") {
-                    calculerResultat();
-                  } else if (bouton === "reset") {
-                    setAffichage("0");
-                    setOperation(null);
-                    setValeurPrecedente(null);
-                  }
-                }}
-              >
-                {bouton}
-              </button> 
-              
-            ))
-          }
-          
-        </div>
+return (
+  <>
+    <div className="container">
+      <div className="visuel" style={tailletext}>{affichage}</div>
+      <div className="clavier">
+        {boutons.map(bouton => (
+          <button
+            key={bouton}
+            onClick={() => {
+              if ("0123456789.".includes(bouton)) {
+                ajouterChiffre_point(bouton);
+              } else if (["+", "-", "x", "÷"].includes(bouton)) {
+                ajouterOperation(
+                  bouton === "x" ? "*" :
+                  bouton === "÷" ? "/" : bouton
+                );
+              } else if (bouton === "=") {
+                calculerResultat();
+              } else if (bouton === "reset") {
+                setAffichage("0");
+                setOperation(null);
+                setValeurPrecedente(null);
+              }
+            }}
+          >
+            {bouton}
+          </button>
+        ))}
+
+        <button
+          className="effacer"
+          onClick={() => {
+            setAffichage("0");
+            setOperation(null);
+            setPrecedent(null);
+          }}
+        >
+          Reset
+        </button>
+
+        <button
+          className="delete"
+          onClick={() => {
+            setAffichage(a =>
+              a.length > 1 ? a.slice(0, -1) : "0"
+            );
+          }}
+        >
+          ⌫
+        </button>
       </div>
-    </>
-  )
+    </div>
+  </>
+);
 }
 
 export default App
