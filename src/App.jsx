@@ -7,18 +7,14 @@ const [affichage, setAffichage] = useState("0");
 const [operation, setOperation] = useState(null);
 const [valeurprecedente, setValeurPrecedente] = useState(null);
 
-//ici nous allons utiliser useMemo 
-// pour calculer la taille du texte en fonction de la longueur
-//  de l'affichage
+//ici nous allons utiliser useMemo pour calculer la taille du texte en fonction de la longueur de l'affichage
  const tailletext = useMemo(() => {
   const len = affichage.length;
   return { fontSize: `${Math.max(18, 48 - (len - 8) * 2)}px` }
   }, [affichage]);
     
 
-
-//ici nous allons créer les fonctions
-//  pour ajouter un chiffre ou un point
+// Fonction pour choisir l'opération
   const ajouterChiffre_point = (val) => {
   setAffichage(a => {
     if (val === "." && a.includes(".")) return a;
@@ -26,19 +22,15 @@ const [valeurprecedente, setValeurPrecedente] = useState(null);
   });
 };
 
-
-//ici nous allons créer la fonction pour choisir l'opération
-// + , - , * , /
-  const choisir = (op) => {
+//ici nous allons utiliser une fonction pour choisir l'opération
   const ajouterOperation = (op) => {
     setValeurPrecedente(affichage);
     setAffichage("0");
     setOperation(op);
   };
 
-
-// ici nous allons vérifier si une opération est déjà en cours
-// on a 2 cas pour les Grands entiers et les décimaux
+  //ici nous allons utiliser une fonction pour calculer le résultat
+  //2 cas pour les grand entiers et les décimaux
   const calculerResultat = () => {  
 
     const est_un_entier=  (v) => { /^\d+\.$/.test(v) };
@@ -68,9 +60,7 @@ const [valeurprecedente, setValeurPrecedente] = useState(null);
   };
  
 
-
-//ici nous allons gerer les effets secondaires
-// pour les touches du clavier  
+  //ici nous allons utiliser useEffect pour écouter les touches du clavier
   useEffect(() => {
     const AppuyerUneTouche=(e) => {
       const s= e.key;
@@ -95,9 +85,6 @@ const [valeurprecedente, setValeurPrecedente] = useState(null);
       }
     };
 
-
-// ici nous allons ajouter l'écouteur d'événement
-    
     window.addEventListener("keydown", AppuyerUneTouche);
     return () => {
       window.removeEventListener("keydown", AppuyerUneTouche);
