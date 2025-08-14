@@ -9,17 +9,16 @@ const [valeurprecedente, setValeurPrecedente] = useState(null);
 
  const tailletext = useMemo(() => {
   const len = affichage.length;
-  return { fontSize: `${Math.max(18,48-(len-8)*2)} + 'px' `}
+  return { fontSize: `${Math.max(18, 48 - (len - 8) * 2)}px` }
   }, [affichage]);
     
 
   const ajouterChiffre_point = (val) => {
-  (a) => {
-    if(val==="." && a.includes(".")) return a;
-   a==="0" && val !=='.' ? val : a + val;
-    setAffichage(a);
-  }
-  };
+  setAffichage(a => {
+    if (val === "." && a.includes(".")) return a;
+    return a === "0" && val !== "." ? val : a + val;
+  });
+};
   const ajouterOperation = (op) => {
     setValeurPrecedente(affichage);
     setAffichage("0");
@@ -78,14 +77,14 @@ const [valeurprecedente, setValeurPrecedente] = useState(null);
       }
     };
 
-    window.addEventListener(keydown, AppuyerUneTouche);
+    window.addEventListener("keydown", AppuyerUneTouche);
     return () => {
-      window.removeEventListener(keydown, AppuyerUneTouche);
+      window.removeEventListener("keydown", AppuyerUneTouche);
     };
   }, [affichage, operation, valeurprecedente]);
 
   const boutons = [
-    '7', '8', '9', '4', '5', '6', '1', '2', '3', '0', '.', '+', '-', 'x' ,'÷', '=', 'C'
+    '7', '8', '9', '4', '5', '6', '1', '2', '3', '0', '.', '+', '-', 'x' ,'÷', '=', 'reset'
   ];
 
 
@@ -105,7 +104,7 @@ const [valeurprecedente, setValeurPrecedente] = useState(null);
                     ajouterOperation(bouton === "x" ? "*" : bouton === "÷" ? "/" : bouton);
                   } else if (bouton === "=") {
                     calculerResultat();
-                  } else if (bouton === "C") {
+                  } else if (bouton === "reset") {
                     setAffichage("0");
                     setOperation(null);
                     setValeurPrecedente(null);

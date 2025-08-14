@@ -1,0 +1,51 @@
+.container{
+  width: 320px;
+  margin: 40px auto;
+  background: rgba(0, 0, 0, 0.85);
+  padding: 15px;
+  border-radius: 15px;
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  backdrop-filter: blur(10px);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+}
+.visuel{
+ background: linear-gradient(135deg, #df2323, #a81b1b);
+  padding: 15px;
+  text-align: right;
+  border-radius: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 2rem;
+  font-weight: bold;
+  box-shadow: inset 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.clavier {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 15px;
+
+}
+.clavier button{
+   padding: 18px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(145deg, #333, #222);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+.clavier button:hover{
+  background: #555;
+}
+.clavier button:active{
+  background: #666;
+}
